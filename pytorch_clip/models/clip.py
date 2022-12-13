@@ -45,7 +45,7 @@ class CLIP(nn.Module):
         text_processor = HFCLIPTextProcessor(processor.tokenizer, target_lang=cfg.tokenizer.target_lang)
         # load image transforms
         image_processor = nn.Sequential(
-            Resize(size=processor.feature_extractor.size),
+            Resize(size=processor.feature_extractor.size['shortest_edge']),
             Normalize(
                 mean=processor.feature_extractor.image_mean,
                 std=processor.feature_extractor.image_std,
